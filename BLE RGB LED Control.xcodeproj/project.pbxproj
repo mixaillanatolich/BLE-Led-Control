@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544899423F9B055009D8A67 /* AppDelegate.swift */; };
+		0544899723F9B055009D8A67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544899623F9B055009D8A67 /* SceneDelegate.swift */; };
+		0544899C23F9B055009D8A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0544899A23F9B055009D8A67 /* Main.storyboard */; };
+		0544899E23F9B057009D8A67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0544899D23F9B057009D8A67 /* Assets.xcassets */; };
+		054489A123F9B057009D8A67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0544899F23F9B057009D8A67 /* LaunchScreen.storyboard */; };
+		054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AA23F9B208009D8A67 /* GyverRequest.swift */; };
+		054489B423F9B218009D8A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AE23F9B218009D8A67 /* ViewController.swift */; };
+		054489B523F9B218009D8A67 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AF23F9B218009D8A67 /* BaseViewController.swift */; };
+		054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B023F9B218009D8A67 /* DeviceViewController.swift */; };
+		054489B723F9B218009D8A67 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B123F9B218009D8A67 /* DeviceListViewController.swift */; };
+		054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */; };
+		054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B323F9B218009D8A67 /* LaunchViewController.swift */; };
+		054489C923F9B3B5009D8A67 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */; };
+		054489CA23F9B3B5009D8A67 /* BLEError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489BD23F9B3B5009D8A67 /* BLEError.swift */; };
+		054489CB23F9B3B5009D8A67 /* BLECommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489BE23F9B3B5009D8A67 /* BLECommand.swift */; };
+		054489CC23F9B3B5009D8A67 /* BLEResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489BF23F9B3B5009D8A67 /* BLEResponse.swift */; };
+		054489CD23F9B3B5009D8A67 /* BLEDevicePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C023F9B3B5009D8A67 /* BLEDevicePeripheral.swift */; };
+		054489CE23F9B3B5009D8A67 /* BLERequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C123F9B3B5009D8A67 /* BLERequest.swift */; };
+		054489CF23F9B3B5009D8A67 /* BLECentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C223F9B3B5009D8A67 /* BLECentralManager.swift */; };
+		054489D023F9B3B5009D8A67 /* BLEResponseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C323F9B3B5009D8A67 /* BLEResponseFactory.swift */; };
+		054489D123F9B3B5009D8A67 /* ExtData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C523F9B3B5009D8A67 /* ExtData.swift */; };
+		054489D223F9B3B5009D8A67 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C623F9B3B5009D8A67 /* ExtString.swift */; };
+		054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */; };
+		054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C823F9B3B5009D8A67 /* LogsHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0544899123F9B055009D8A67 /* RGB LED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RGB LED.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0544899423F9B055009D8A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0544899623F9B055009D8A67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0544899B23F9B055009D8A67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0544899D23F9B057009D8A67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		054489A023F9B057009D8A67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		054489A223F9B057009D8A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		054489AA23F9B208009D8A67 /* GyverRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyverRequest.swift; sourceTree = "<group>"; };
+		054489AE23F9B218009D8A67 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		054489AF23F9B218009D8A67 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		054489B023F9B218009D8A67 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
+		054489B123F9B218009D8A67 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		054489B323F9B218009D8A67 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
+		054489BD23F9B3B5009D8A67 /* BLEError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEError.swift; sourceTree = "<group>"; };
+		054489BE23F9B3B5009D8A67 /* BLECommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECommand.swift; sourceTree = "<group>"; };
+		054489BF23F9B3B5009D8A67 /* BLEResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEResponse.swift; sourceTree = "<group>"; };
+		054489C023F9B3B5009D8A67 /* BLEDevicePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEDevicePeripheral.swift; sourceTree = "<group>"; };
+		054489C123F9B3B5009D8A67 /* BLERequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLERequest.swift; sourceTree = "<group>"; };
+		054489C223F9B3B5009D8A67 /* BLECentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentralManager.swift; sourceTree = "<group>"; };
+		054489C323F9B3B5009D8A67 /* BLEResponseFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEResponseFactory.swift; sourceTree = "<group>"; };
+		054489C523F9B3B5009D8A67 /* ExtData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtData.swift; sourceTree = "<group>"; };
+		054489C623F9B3B5009D8A67 /* ExtString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
+		054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtObjectOrNil.swift; sourceTree = "<group>"; };
+		054489C823F9B3B5009D8A67 /* LogsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0544898E23F9B055009D8A67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0544898823F9B055009D8A67 = {
+			isa = PBXGroup;
+			children = (
+				0544899323F9B055009D8A67 /* BLE RGB LED Control */,
+				0544899223F9B055009D8A67 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0544899223F9B055009D8A67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0544899123F9B055009D8A67 /* RGB LED.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0544899323F9B055009D8A67 /* BLE RGB LED Control */ = {
+			isa = PBXGroup;
+			children = (
+				054489BB23F9B3B5009D8A67 /* BLECore */,
+				054489AC23F9B212009D8A67 /* Vendors */,
+				054489A823F9B208009D8A67 /* Core */,
+				054489AD23F9B218009D8A67 /* ViewControllers */,
+				054489BA23F9B37E009D8A67 /* Storyboards */,
+				0544899423F9B055009D8A67 /* AppDelegate.swift */,
+				0544899623F9B055009D8A67 /* SceneDelegate.swift */,
+				0544899D23F9B057009D8A67 /* Assets.xcassets */,
+				054489A223F9B057009D8A67 /* Info.plist */,
+			);
+			path = "BLE RGB LED Control";
+			sourceTree = "<group>";
+		};
+		054489A823F9B208009D8A67 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				054489A923F9B208009D8A67 /* BLE */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		054489A923F9B208009D8A67 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				054489AA23F9B208009D8A67 /* GyverRequest.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		054489AC23F9B212009D8A67 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		054489AD23F9B218009D8A67 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				054489AE23F9B218009D8A67 /* ViewController.swift */,
+				054489AF23F9B218009D8A67 /* BaseViewController.swift */,
+				054489B023F9B218009D8A67 /* DeviceViewController.swift */,
+				054489B123F9B218009D8A67 /* DeviceListViewController.swift */,
+				054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */,
+				054489B323F9B218009D8A67 /* LaunchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		054489BA23F9B37E009D8A67 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0544899F23F9B057009D8A67 /* LaunchScreen.storyboard */,
+				0544899A23F9B055009D8A67 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		054489BB23F9B3B5009D8A67 /* BLECore */ = {
+			isa = PBXGroup;
+			children = (
+				054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */,
+				054489BD23F9B3B5009D8A67 /* BLEError.swift */,
+				054489BE23F9B3B5009D8A67 /* BLECommand.swift */,
+				054489BF23F9B3B5009D8A67 /* BLEResponse.swift */,
+				054489C023F9B3B5009D8A67 /* BLEDevicePeripheral.swift */,
+				054489C123F9B3B5009D8A67 /* BLERequest.swift */,
+				054489C223F9B3B5009D8A67 /* BLECentralManager.swift */,
+				054489C323F9B3B5009D8A67 /* BLEResponseFactory.swift */,
+				054489C423F9B3B5009D8A67 /* Helpers */,
+			);
+			path = BLECore;
+			sourceTree = SOURCE_ROOT;
+		};
+		054489C423F9B3B5009D8A67 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				054489C523F9B3B5009D8A67 /* ExtData.swift */,
+				054489C623F9B3B5009D8A67 /* ExtString.swift */,
+				054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */,
+				054489C823F9B3B5009D8A67 /* LogsHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0544899023F9B055009D8A67 /* BLE RGB LED Control */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 054489A523F9B057009D8A67 /* Build configuration list for PBXNativeTarget "BLE RGB LED Control" */;
+			buildPhases = (
+				0544898D23F9B055009D8A67 /* Sources */,
+				0544898E23F9B055009D8A67 /* Frameworks */,
+				0544898F23F9B055009D8A67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BLE RGB LED Control";
+			productName = "BLE RGB LED Control";
+			productReference = 0544899123F9B055009D8A67 /* RGB LED.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0544898923F9B055009D8A67 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "M-Technologies";
+				TargetAttributes = {
+					0544899023F9B055009D8A67 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 0544898C23F9B055009D8A67 /* Build configuration list for PBXProject "BLE RGB LED Control" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0544898823F9B055009D8A67;
+			productRefGroup = 0544899223F9B055009D8A67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0544899023F9B055009D8A67 /* BLE RGB LED Control */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0544898F23F9B055009D8A67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054489A123F9B057009D8A67 /* LaunchScreen.storyboard in Resources */,
+				0544899E23F9B057009D8A67 /* Assets.xcassets in Resources */,
+				0544899C23F9B055009D8A67 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0544898D23F9B055009D8A67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				054489D223F9B3B5009D8A67 /* ExtString.swift in Sources */,
+				054489B523F9B218009D8A67 /* BaseViewController.swift in Sources */,
+				054489CB23F9B3B5009D8A67 /* BLECommand.swift in Sources */,
+				054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */,
+				054489D123F9B3B5009D8A67 /* ExtData.swift in Sources */,
+				054489CD23F9B3B5009D8A67 /* BLEDevicePeripheral.swift in Sources */,
+				0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */,
+				054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */,
+				054489D023F9B3B5009D8A67 /* BLEResponseFactory.swift in Sources */,
+				054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */,
+				054489CC23F9B3B5009D8A67 /* BLEResponse.swift in Sources */,
+				054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */,
+				054489CE23F9B3B5009D8A67 /* BLERequest.swift in Sources */,
+				054489CF23F9B3B5009D8A67 /* BLECentralManager.swift in Sources */,
+				054489B423F9B218009D8A67 /* ViewController.swift in Sources */,
+				0544899723F9B055009D8A67 /* SceneDelegate.swift in Sources */,
+				054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */,
+				054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */,
+				054489B723F9B218009D8A67 /* DeviceListViewController.swift in Sources */,
+				054489CA23F9B3B5009D8A67 /* BLEError.swift in Sources */,
+				054489C923F9B3B5009D8A67 /* BLEPeripheral.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0544899A23F9B055009D8A67 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0544899B23F9B055009D8A67 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0544899F23F9B057009D8A67 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				054489A023F9B057009D8A67 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		054489A323F9B057009D8A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		054489A423F9B057009D8A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		054489A623F9B057009D8A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 73LTLJAK8K;
+				INFOPLIST_FILE = "BLE RGB LED Control/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m-technologies.BLE-RGB-LED-Control";
+				PRODUCT_NAME = "RGB LED";
+				PROVISIONING_PROFILE_SPECIFIER = "All devices";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		054489A723F9B057009D8A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 73LTLJAK8K;
+				INFOPLIST_FILE = "BLE RGB LED Control/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m-technologies.BLE-RGB-LED-Control";
+				PRODUCT_NAME = "RGB LED";
+				PROVISIONING_PROFILE_SPECIFIER = "All devices";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0544898C23F9B055009D8A67 /* Build configuration list for PBXProject "BLE RGB LED Control" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054489A323F9B057009D8A67 /* Debug */,
+				054489A423F9B057009D8A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		054489A523F9B057009D8A67 /* Build configuration list for PBXNativeTarget "BLE RGB LED Control" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				054489A623F9B057009D8A67 /* Debug */,
+				054489A723F9B057009D8A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0544898923F9B055009D8A67 /* Project object */;
+}
