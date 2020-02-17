@@ -20,7 +20,7 @@ class LaunchViewController: UIViewController {
         _ = BLEManager //just start BLE
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.performSegue(withIdentifier: "ShowDeviceListScreen", sender: self)
+            self.performSegue(withIdentifier: "ShowLedControlScreen", sender: self)
         }
     }
     

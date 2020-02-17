@@ -13,10 +13,9 @@
 		0544899E23F9B057009D8A67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0544899D23F9B057009D8A67 /* Assets.xcassets */; };
 		054489A123F9B057009D8A67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0544899F23F9B057009D8A67 /* LaunchScreen.storyboard */; };
 		054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AA23F9B208009D8A67 /* GyverRequest.swift */; };
-		054489B423F9B218009D8A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AE23F9B218009D8A67 /* ViewController.swift */; };
 		054489B523F9B218009D8A67 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AF23F9B218009D8A67 /* BaseViewController.swift */; };
 		054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B023F9B218009D8A67 /* DeviceViewController.swift */; };
-		054489B723F9B218009D8A67 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B123F9B218009D8A67 /* DeviceListViewController.swift */; };
+		054489B723F9B218009D8A67 /* DevicePairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B123F9B218009D8A67 /* DevicePairViewController.swift */; };
 		054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */; };
 		054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B323F9B218009D8A67 /* LaunchViewController.swift */; };
 		054489C923F9B3B5009D8A67 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */; };
@@ -31,6 +30,8 @@
 		054489D223F9B3B5009D8A67 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C623F9B3B5009D8A67 /* ExtString.swift */; };
 		054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */; };
 		054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C823F9B3B5009D8A67 /* LogsHelper.swift */; };
+		057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */; };
+		057701A423FAC6F900E3C0E7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +43,9 @@
 		054489A023F9B057009D8A67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		054489A223F9B057009D8A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054489AA23F9B208009D8A67 /* GyverRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyverRequest.swift; sourceTree = "<group>"; };
-		054489AE23F9B218009D8A67 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		054489AF23F9B218009D8A67 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		054489B023F9B218009D8A67 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
-		054489B123F9B218009D8A67 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		054489B123F9B218009D8A67 /* DevicePairViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePairViewController.swift; sourceTree = "<group>"; };
 		054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		054489B323F9B218009D8A67 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
@@ -60,6 +60,8 @@
 		054489C623F9B3B5009D8A67 /* ExtString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtObjectOrNil.swift; sourceTree = "<group>"; };
 		054489C823F9B3B5009D8A67 /* LogsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsHelper.swift; sourceTree = "<group>"; };
+		057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedControlViewController.swift; sourceTree = "<group>"; };
+		057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		054489AC23F9B212009D8A67 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -131,12 +134,12 @@
 		054489AD23F9B218009D8A67 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				054489AE23F9B218009D8A67 /* ViewController.swift */,
 				054489AF23F9B218009D8A67 /* BaseViewController.swift */,
-				054489B023F9B218009D8A67 /* DeviceViewController.swift */,
-				054489B123F9B218009D8A67 /* DeviceListViewController.swift */,
-				054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */,
 				054489B323F9B218009D8A67 /* LaunchViewController.swift */,
+				057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */,
+				054489B023F9B218009D8A67 /* DeviceViewController.swift */,
+				054489B123F9B218009D8A67 /* DevicePairViewController.swift */,
+				054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */,
 				054489D123F9B3B5009D8A67 /* ExtData.swift in Sources */,
 				054489CD23F9B3B5009D8A67 /* BLEDevicePeripheral.swift in Sources */,
+				057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */,
 				0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */,
 				054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */,
 				054489D023F9B3B5009D8A67 /* BLEResponseFactory.swift in Sources */,
@@ -261,12 +265,12 @@
 				054489CC23F9B3B5009D8A67 /* BLEResponse.swift in Sources */,
 				054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */,
 				054489CE23F9B3B5009D8A67 /* BLERequest.swift in Sources */,
+				057701A423FAC6F900E3C0E7 /* UserDefaultWrapper.swift in Sources */,
 				054489CF23F9B3B5009D8A67 /* BLECentralManager.swift in Sources */,
-				054489B423F9B218009D8A67 /* ViewController.swift in Sources */,
 				0544899723F9B055009D8A67 /* SceneDelegate.swift in Sources */,
 				054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */,
 				054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */,
-				054489B723F9B218009D8A67 /* DeviceListViewController.swift in Sources */,
+				054489B723F9B218009D8A67 /* DevicePairViewController.swift in Sources */,
 				054489CA23F9B3B5009D8A67 /* BLEError.swift in Sources */,
 				054489C923F9B3B5009D8A67 /* BLEPeripheral.swift in Sources */,
 			);
