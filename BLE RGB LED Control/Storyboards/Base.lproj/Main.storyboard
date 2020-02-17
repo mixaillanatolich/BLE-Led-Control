@@ -78,7 +78,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="1" green="0.43441106800000001" blue="0.0" alpha="0.27062821061643838" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiscoveredPeripheralCell" id="u25-pS-xBa" customClass="DiscoveredDeviceTableViewCell" customModule="BLECore" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiscoveredPeripheralCell" id="u25-pS-xBa" customClass="DiscoveredDeviceTableViewCell" customModule="RGB_LED" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u25-pS-xBa" id="YiZ-39-nQz">
@@ -341,8 +341,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="BfO-OO-jDE"/>
                     <connections>
+                        <outlet property="controlLabel" destination="voi-Dp-x3b" id="MhE-hy-gnD"/>
                         <outlet property="pairButton" destination="eUQ-qr-qwq" id="phm-vy-Usc"/>
-                        <segue destination="FA1-PX-W1C" kind="presentation" identifier="ShowPairScreen" id="JJZ-mZ-4kJ"/>
+                        <segue destination="FA1-PX-W1C" kind="showDetail" identifier="ShowPairScreen" id="JJZ-mZ-4kJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vcz-uB-x7k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

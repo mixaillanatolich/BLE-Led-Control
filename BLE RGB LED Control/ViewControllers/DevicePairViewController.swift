@@ -35,10 +35,13 @@ class DevicePairViewController: BaseViewController {
             
             if connectStatus == .ready {
                 DispatchQueue.main.async {
+                    let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
                     self.dismiss(animated: true) {
                         self.deviceId = peripheral?.identifier.uuidString
-                        dLog("was saved device with id \(peripheral?.identifier.uuidString)")
-                        dLog("was saved device with id \(self.deviceId)")
+                        guard let vc = ledControlVc else {
+                            return
+                        }
+                        vc.pairControllerWillDismiss()
                     }
                 }
             } else if connectStatus == .error || connectStatus == .timeoutError {
@@ -64,14 +67,15 @@ class DevicePairViewController: BaseViewController {
             return
         }
         
-        if BLEManager.deviceConnected() {
+        guard BLEManager.deviceDisconnected() else {
             BLEManager.disconectFromDevice()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.startDiscovery()
             }
-        } else {
-            startDiscovery()
+            return
         }
+        
+        startDiscovery()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -110,8 +114,12 @@ class DevicePairViewController: BaseViewController {
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {
+        let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
         self.dismiss(animated: true) {
-            
+            guard let vc = ledControlVc else {
+                return
+            }
+            vc.pairControllerWillDismiss()
         }
     }
     
@@ -151,7 +159,5 @@ extension DevicePairViewController: UITableViewDelegate, UITableViewDataSource {
                                        serviceIds: [CBUUID(string: "FFE0")],
                                        characteristicIds: [CBUUID(string: "FFE1")], timeout: 10.0)
         }
-        
     }
-
 }

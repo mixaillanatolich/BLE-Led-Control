@@ -24,10 +24,12 @@ class BaseViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
+    typealias SegueSenderCallback = (_ vc: UIViewController) -> Void
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue,
                       sender: sender)
-        if let prepareBlock = sender as? (UIViewController)->() {
+        if let prepareBlock = sender as? SegueSenderCallback {
             prepareBlock(segue.destination)
         }
     }

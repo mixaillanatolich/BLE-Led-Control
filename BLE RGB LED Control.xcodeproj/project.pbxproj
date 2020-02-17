@@ -156,15 +156,15 @@
 		054489BB23F9B3B5009D8A67 /* BLECore */ = {
 			isa = PBXGroup;
 			children = (
+				054489C423F9B3B5009D8A67 /* Helpers */,
+				054489C223F9B3B5009D8A67 /* BLECentralManager.swift */,
+				054489C023F9B3B5009D8A67 /* BLEDevicePeripheral.swift */,
 				054489BC23F9B3B5009D8A67 /* BLEPeripheral.swift */,
 				054489BD23F9B3B5009D8A67 /* BLEError.swift */,
 				054489BE23F9B3B5009D8A67 /* BLECommand.swift */,
 				054489BF23F9B3B5009D8A67 /* BLEResponse.swift */,
-				054489C023F9B3B5009D8A67 /* BLEDevicePeripheral.swift */,
 				054489C123F9B3B5009D8A67 /* BLERequest.swift */,
-				054489C223F9B3B5009D8A67 /* BLECentralManager.swift */,
 				054489C323F9B3B5009D8A67 /* BLEResponseFactory.swift */,
-				054489C423F9B3B5009D8A67 /* Helpers */,
 			);
 			path = BLECore;
 			sourceTree = SOURCE_ROOT;
