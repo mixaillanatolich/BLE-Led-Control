@@ -32,9 +32,7 @@ public class BLECommand: NSObject {
     }
     
     func handleResponse() -> Bool {
-        let (status, response) = request.handleRawResponse(rawResponse)
-        self.response = response
-        return !status
+        return false
     }
     
     func sendCallback() {

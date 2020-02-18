@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053D907C23FBD0D500B01541 /* LedControlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D907B23FBD0D500B01541 /* LedControlManager.swift */; };
 		0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544899423F9B055009D8A67 /* AppDelegate.swift */; };
 		0544899723F9B055009D8A67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544899623F9B055009D8A67 /* SceneDelegate.swift */; };
 		0544899C23F9B055009D8A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0544899A23F9B055009D8A67 /* Main.storyboard */; };
@@ -32,9 +33,14 @@
 		054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C823F9B3B5009D8A67 /* LogsHelper.swift */; };
 		057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */; };
 		057701A423FAC6F900E3C0E7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */; };
+		058A28D023FC196F0092C0CB /* GyverStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A28CF23FC196F0092C0CB /* GyverStateResponse.swift */; };
+		058A28D223FC19910092C0CB /* GyverSetStateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A28D123FC19910092C0CB /* GyverSetStateRequest.swift */; };
+		05CCA72C23FC648A00AA3C7F /* GyverStateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CCA72B23FC648A00AA3C7F /* GyverStateCommand.swift */; };
+		5B7923C5736DEC3EFFBF50A2 /* Pods_BLE_RGB_LED_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55924D66CAB3DA21B8B91EC7 /* Pods_BLE_RGB_LED_Control.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053D907B23FBD0D500B01541 /* LedControlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedControlManager.swift; sourceTree = "<group>"; };
 		0544899123F9B055009D8A67 /* RGB LED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RGB LED.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0544899423F9B055009D8A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0544899623F9B055009D8A67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +68,12 @@
 		054489C823F9B3B5009D8A67 /* LogsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsHelper.swift; sourceTree = "<group>"; };
 		057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedControlViewController.swift; sourceTree = "<group>"; };
 		057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
+		058A28CF23FC196F0092C0CB /* GyverStateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverStateResponse.swift; sourceTree = "<group>"; };
+		058A28D123FC19910092C0CB /* GyverSetStateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverSetStateRequest.swift; sourceTree = "<group>"; };
+		05CCA72B23FC648A00AA3C7F /* GyverStateCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverStateCommand.swift; sourceTree = "<group>"; };
+		55924D66CAB3DA21B8B91EC7 /* Pods_BLE_RGB_LED_Control.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLE_RGB_LED_Control.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F4914BA8A09ED9A160F5E73 /* Pods-BLE RGB LED Control.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE RGB LED Control.release.xcconfig"; path = "Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control.release.xcconfig"; sourceTree = "<group>"; };
+		F5CAB1A50F6AE1AB3F2CCB53 /* Pods-BLE RGB LED Control.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE RGB LED Control.debug.xcconfig"; path = "Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B7923C5736DEC3EFFBF50A2 /* Pods_BLE_RGB_LED_Control.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +93,8 @@
 			children = (
 				0544899323F9B055009D8A67 /* BLE RGB LED Control */,
 				0544899223F9B055009D8A67 /* Products */,
+				FD456D9FA696CB2A4EC7F7C0 /* Pods */,
+				74D966A6E189A4A4573B177A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,7 +133,11 @@
 		054489A923F9B208009D8A67 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				053D907B23FBD0D500B01541 /* LedControlManager.swift */,
 				054489AA23F9B208009D8A67 /* GyverRequest.swift */,
+				05CCA72B23FC648A00AA3C7F /* GyverStateCommand.swift */,
+				058A28D123FC19910092C0CB /* GyverSetStateRequest.swift */,
+				058A28CF23FC196F0092C0CB /* GyverStateResponse.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -180,6 +199,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		74D966A6E189A4A4573B177A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55924D66CAB3DA21B8B91EC7 /* Pods_BLE_RGB_LED_Control.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD456D9FA696CB2A4EC7F7C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5CAB1A50F6AE1AB3F2CCB53 /* Pods-BLE RGB LED Control.debug.xcconfig */,
+				6F4914BA8A09ED9A160F5E73 /* Pods-BLE RGB LED Control.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 054489A523F9B057009D8A67 /* Build configuration list for PBXNativeTarget "BLE RGB LED Control" */;
 			buildPhases = (
+				9703CEC11E1FD81184B95D9D /* [CP] Check Pods Manifest.lock */,
 				0544898D23F9B055009D8A67 /* Sources */,
 				0544898E23F9B055009D8A67 /* Frameworks */,
 				0544898F23F9B055009D8A67 /* Resources */,
+				66F2692A539422D0D0EC1F7A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -246,11 +284,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		66F2692A539422D0D0EC1F7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9703CEC11E1FD81184B95D9D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BLE RGB LED Control-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0544898D23F9B055009D8A67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058A28D223FC19910092C0CB /* GyverSetStateRequest.swift in Sources */,
+				058A28D023FC196F0092C0CB /* GyverStateResponse.swift in Sources */,
 				054489D223F9B3B5009D8A67 /* ExtString.swift in Sources */,
 				054489B523F9B218009D8A67 /* BaseViewController.swift in Sources */,
 				054489CB23F9B3B5009D8A67 /* BLECommand.swift in Sources */,
@@ -264,11 +346,13 @@
 				054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */,
 				054489CC23F9B3B5009D8A67 /* BLEResponse.swift in Sources */,
 				054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */,
+				053D907C23FBD0D500B01541 /* LedControlManager.swift in Sources */,
 				054489CE23F9B3B5009D8A67 /* BLERequest.swift in Sources */,
 				057701A423FAC6F900E3C0E7 /* UserDefaultWrapper.swift in Sources */,
 				054489CF23F9B3B5009D8A67 /* BLECentralManager.swift in Sources */,
 				0544899723F9B055009D8A67 /* SceneDelegate.swift in Sources */,
 				054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */,
+				05CCA72C23FC648A00AA3C7F /* GyverStateCommand.swift in Sources */,
 				054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */,
 				054489B723F9B218009D8A67 /* DevicePairViewController.swift in Sources */,
 				054489CA23F9B3B5009D8A67 /* BLEError.swift in Sources */,
@@ -414,6 +498,7 @@
 		};
 		054489A623F9B057009D8A67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5CAB1A50F6AE1AB3F2CCB53 /* Pods-BLE RGB LED Control.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -435,6 +520,7 @@
 		};
 		054489A723F9B057009D8A67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F4914BA8A09ED9A160F5E73 /* Pods-BLE RGB LED Control.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -24,10 +24,13 @@ class GyverRequest: BLERequest {
     
     override func rawData() -> [Data] {
         var requestData = Data()
-        requestData.append("S".hexData())
+        requestData.append("$".hexData())
         requestData.append(data)
         requestData.append(";".hexData())
         return [requestData]
     }
+    
+    
+    
     
 }
