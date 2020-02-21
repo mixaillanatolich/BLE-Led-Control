@@ -8,89 +8,69 @@
 
 import UIKit
 
-enum StateResponseOptions: Int {
-    case brightness = 0
-    case value1
-    case value2
-    case value3
-    case value4
-    case onOffState
-}
-
 class GyverStateResponse: BLEResponse {
 
-    var responseValues = [Int]()
+    //var responseValues = [Int]()
     
     var preset = 0
     var mode:LedMode = .RGB
+    var brightness = 0
+    var value1 = 0
+    var value2 = 0
+    var value3 = 0
+    var value4 = 0
     var whiteLevel = 0
+    var isOn = false
     
     override init?(rawData: Data?) {
         super.init(rawData: rawData)
         
-        guard let data = rawData else {
+        guard let data = dataArray else {
             return nil
         }
         
-        var values = data.split(separator: UInt8(0x20))
-        
-        guard values.count > 8 else {
+        guard data.count >= 14 && data[0] == 0x55 else {
             return nil
         }
         
-        var value = values.removeFirst()
-        guard value.count == 1, value.first == 0x55 else {
-            return nil
-        }
-        
-        value = values.removeFirst()
-        guard value.count == 1 else {
-            return nil
-        }
-        self.preset = Int(value.uint8())
-
-        value = values.removeFirst()
-        guard let theMode = LedMode(rawValue: Int(value.uint8())) else {
+        self.preset = Int(data[1])
+        guard let theMode = LedMode(rawValue: Int(data[2])) else {
             return nil
         }
         self.mode = theMode
-
-        for value in values {
-            if value.count == 1 {
-                responseValues.append(Int(value.uint8()))
-            } else if value.count == 2 {
-                responseValues.append(Int(value.uint16()))
-            }
-        }
+        
+        brightness = Int(Data([data[3],data[4]]).uint16())
+        value1 = Int(Data([data[5],data[6]]).uint16())
+        value2 = Int(Data([data[7],data[8]]).uint16())
+        value3 = Int(Data([data[9],data[10]]).uint16())
+        value4 = Int(Data([data[11],data[12]]).uint16())
+        
+        isOn = (data[13] != 0x00)
         
         switch theMode {
         case .RGB:
-            whiteLevel = responseValues[4]
+            whiteLevel = value4
         case .HSV:
-            whiteLevel = responseValues[3]
+            whiteLevel = value3
         case .Color:
-            whiteLevel = responseValues[2]
+            whiteLevel = value2
         case .ColorSelection:
-            whiteLevel = responseValues[2]
+            whiteLevel = value2
         case .Kelvin:
-            whiteLevel = responseValues[2]
+            whiteLevel = value2
         case .ColorLoop:
-            whiteLevel = responseValues[3]
+            whiteLevel = value3
         case .Fire:
-            whiteLevel = responseValues[4] //undefined
+            whiteLevel = value4 //undefined
         case .ManualFire:
-            whiteLevel = responseValues[0]
+            whiteLevel = brightness
         case .StrobeLight:
-            whiteLevel = responseValues[4]
+            whiteLevel = value4
         case .RandomStrobeLight:
-            whiteLevel = responseValues[4]
+            whiteLevel = value4
         case .Flashing:
-            whiteLevel = responseValues[4] //undefined
+            whiteLevel = value4 //undefined
         }
-    }
-    
-    func isOn() -> Bool {
-        return responseValues[StateResponseOptions.onOffState.rawValue] != 0
     }
     
 }

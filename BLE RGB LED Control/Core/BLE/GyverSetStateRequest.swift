@@ -9,8 +9,6 @@
 import UIKit
 
 class GyverSetStateRequest: GyverRequest {
-
-    static fileprivate let divider: UInt8 = 0x2c
     
     class func buildRequest(brightness: Int, white: Int, settings:[SliderSetting], b7: Int, mode: String?) -> Data {
         
@@ -84,50 +82,14 @@ class GyverSetStateRequest: GyverRequest {
     class func buildRequest(brightness: Int, b2: Int, b3: Int, b4: Int, b5: Int, white: Int, b7: Int) -> Data {
         
         let commandId:UInt8 = 0x02
-        var data = Data([commandId, divider])
-        data.append(Data([UInt8(brightness), divider]))
-        if b2 <= UINT8_MAX {
-            data.append(Data([UInt8(b2), divider]))
-        } else {
-            data.append(Data([UInt8(b2 >> 8), UInt8(b2 & 0x00ff), divider]))
-        }
-        if b3 < 256 {
-            data.append(Data([UInt8(b3), divider]))
-        } else {
-            data.append(Data([UInt8(b3 >> 8), UInt8(b3 & 0x00ff), divider]))
-        }
-        if b4 < 256 {
-            data.append(Data([UInt8(b4), divider]))
-        } else {
-            data.append(Data([UInt8(b4 >> 8), UInt8(b4 & 0x00ff), divider]))
-        }
-        if b5 < 256 {
-            data.append(Data([UInt8(b5), divider]))
-        } else {
-            data.append(Data([UInt8(b5 >> 8), UInt8(b5 & 0x00ff), divider]))
-        }
-        data.append(Data([UInt8(white), divider]))
+        var data = Data([commandId])
+        data.append(Data([UInt8(brightness)]))
+        data.append(Data([UInt8(b2 >> 8), UInt8(b2 & 0x00ff)]))
+        data.append(Data([UInt8(b3 >> 8), UInt8(b3 & 0x00ff)]))
+        data.append(Data([UInt8(b4 >> 8), UInt8(b4 & 0x00ff)]))
+        data.append(Data([UInt8(b5 >> 8), UInt8(b5 & 0x00ff)]))
+        data.append(Data([UInt8(white)]))
         data.append(Data([UInt8(b7)]))
-//        let presetId:UInt8 = UInt8(id)
-//
-//        var requestStr = "2"
-//        requestStr.append(",\(brightness)")
-//        requestStr.append(",\(b2)")
-//        requestStr.append(",\(b3)")
-//        requestStr.append(",\(b4)")
-//        requestStr.append(",0")
-//        requestStr.append(",\(white)")
-//        requestStr.append(",\(b7)")
-        
-        /*
-        init(value: UInt16) {
-            self.init([UInt8(value >> 8), UInt8(value & 0x00ff)])
-        }
-        
-        init(valueBack: UInt16) {
-            self.init([UInt8(valueBack & 0x00ff), UInt8(valueBack >> 8)])
-        }
-        */
         
         return data
     }

@@ -432,9 +432,9 @@ extension LedControlViewController {
         DispatchQueue.main.async {
             self.modeId = response.mode.rawValue
             self.presetId = response.preset
-            self.isOn = response.isOn()
+            self.isOn = response.isOn
             
-            self.currentBrightness = response.responseValues[StateResponseOptions.brightness.rawValue]
+            self.currentBrightness = response.brightness
             self.currentWhite = response.whiteLevel
             
             self.currentModeSlidersStorage = self.modesSettings[self.modeId]
@@ -443,11 +443,11 @@ extension LedControlViewController {
             for sliderSettings in self.currentModeSlidersStorage {
                 switch index {
                 case 0:
-                    sliderSettings.value = response.responseValues[StateResponseOptions.value1.rawValue]
+                    sliderSettings.value = response.value1
                 case 1:
-                    sliderSettings.value = response.responseValues[StateResponseOptions.value2.rawValue]
+                    sliderSettings.value = response.value2
                 case 2:
-                    sliderSettings.value = response.responseValues[StateResponseOptions.value3.rawValue]
+                    sliderSettings.value = response.value3
                 default:
                     break
                 }
@@ -455,7 +455,7 @@ extension LedControlViewController {
             }
             
             if self.currentModeSlidersStorage.isEmpty {
-                self.currentColor = response.responseValues[StateResponseOptions.value1.rawValue]
+                self.currentColor = response.value1
                 if self.currentColor >= self.colors.count {
                     self.currentColor = 0
                 }
