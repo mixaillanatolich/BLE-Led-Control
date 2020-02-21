@@ -8,49 +8,89 @@
 
 import UIKit
 
+enum StateResponseOptions: Int {
+    case brightness = 0
+    case value1
+    case value2
+    case value3
+    case value4
+    case onOffState
+}
+
 class GyverStateResponse: BLEResponse {
 
-    private var responseValues = [Int]()
+    var responseValues = [Int]()
     
     var preset = 0
-    var mode = 0
+    var mode:LedMode = .RGB
+    var whiteLevel = 0
     
     override init?(rawData: Data?) {
         super.init(rawData: rawData)
         
-        guard let responseStr = dataAsString() else {
+        guard let data = rawData else {
             return nil
         }
         
-        var values = responseStr.split(separator: " ")
+        var values = data.split(separator: UInt8(0x20))
         
-        guard values.count > 3 else {
+        guard values.count > 8 else {
             return nil
         }
         
-        guard values[0] == "GS" else {
+        var value = values.removeFirst()
+        guard value.count == 1, value.first == 0x55 else {
             return nil
         }
         
-        //removing command id
-        values.removeFirst()
-        
-        guard let preset = Int(values.removeFirst()) else {
+        value = values.removeFirst()
+        guard value.count == 1 else {
             return nil
         }
-        
-        self.preset = preset-1
-        
-        guard let mode = Int(values.removeFirst()) else {
+        self.preset = Int(value.uint8())
+
+        value = values.removeFirst()
+        guard let theMode = LedMode(rawValue: Int(value.uint8())) else {
             return nil
         }
-        
-        self.mode = mode-1
-        
-        for str in values {
-            if let value = Int(str) {
-                responseValues.append(value)
+        self.mode = theMode
+
+        for value in values {
+            if value.count == 1 {
+                responseValues.append(Int(value.uint8()))
+            } else if value.count == 2 {
+                responseValues.append(Int(value.uint16()))
             }
         }
+        
+        switch theMode {
+        case .RGB:
+            whiteLevel = responseValues[4]
+        case .HSV:
+            whiteLevel = responseValues[3]
+        case .Color:
+            whiteLevel = responseValues[2]
+        case .ColorSelection:
+            whiteLevel = responseValues[2]
+        case .Kelvin:
+            whiteLevel = responseValues[2]
+        case .ColorLoop:
+            whiteLevel = responseValues[3]
+        case .Fire:
+            whiteLevel = responseValues[4] //undefined
+        case .ManualFire:
+            whiteLevel = responseValues[0]
+        case .StrobeLight:
+            whiteLevel = responseValues[4]
+        case .RandomStrobeLight:
+            whiteLevel = responseValues[4]
+        case .Flashing:
+            whiteLevel = responseValues[4] //undefined
+        }
     }
+    
+    func isOn() -> Bool {
+        return responseValues[StateResponseOptions.onOffState.rawValue] != 0
+    }
+    
 }

@@ -13,7 +13,7 @@ let LEDController = LedControlManager.sharedInstance
 
 class LedControlManager: NSObject {
 
-    
+    fileprivate let divider: UInt8 = 0x2c
     
     public static let sharedInstance: LedControlManager = {
         let instance = LedControlManager()
@@ -26,7 +26,7 @@ class LedControlManager: NSObject {
     
     func sendPing(callback: @escaping (_ isSuccess: Bool) -> Void) {
         
-        let request = GyverRequest(request: "0", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        let request = GyverRequest(rawData: Data([0x00]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
         request.isWaitResponse = true
         request.isWriteWithResponse = true
         request.mode = .write
@@ -46,7 +46,7 @@ class LedControlManager: NSObject {
     
     func loadSetting(callback: @escaping (_ isSuccessful: Bool, _ response: GyverStateResponse?) -> Void) {
         
-        let request = GyverRequest(request: "1", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        let request = GyverRequest(rawData: Data([0x01]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
         request.isWaitResponse = true
         request.isWriteWithResponse = true
         request.mode = .write
@@ -56,6 +56,7 @@ class LedControlManager: NSObject {
         command.responseCallback = { (status, response, error) in
             dLog("status: \(status)")
             dLog("response: \(response?.dataAsString().orNil ?? "")")
+            dLog(" ")
             dLog("error: \(error.orNil)")
             callback(status == .success , response as? GyverStateResponse)
         }
@@ -64,14 +65,11 @@ class LedControlManager: NSObject {
         
     }
     
-    func changeSetting(callback: @escaping (_ isSuccess: Bool) -> Void) {
+    func changeSetting(command: Data, callback: @escaping (_ isSuccess: Bool) -> Void) {
         
-        let commandId = "2"
-        //let state =
-        
-        let request = GyverRequest(request: "\(commandId)", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = true
-        request.isWriteWithResponse = true
+        let request = GyverRequest(rawData: command, requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        request.isWaitResponse = false
+        request.isWriteWithResponse = false
         request.mode = .write
         request.retryCount = 0
         
@@ -80,7 +78,7 @@ class LedControlManager: NSObject {
             dLog("status: \(status)")
             dLog("response: \(response?.dataAsString().orNil ?? "")")
             dLog("error: \(error.orNil)")
-            callback(status == .success && response != nil)
+            callback(status == .success)
         }
 
         BLEManager.currentDevice?.addCommandToQueue(command)
@@ -89,10 +87,10 @@ class LedControlManager: NSObject {
     
     func changePreset(presetId id: Int, callback: @escaping (_ isSuccessful: Bool, _ response: GyverStateResponse?) -> Void) {
         
-        let commandId = "3"
-        let state = "\(id)"
+        let commandId:UInt8 = 0x03
+        let presetId:UInt8 = UInt8(id)
         
-        let request = GyverRequest(request: "\(commandId),\(state)", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        let request = GyverRequest(rawData: Data([commandId, divider, presetId]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
         request.isWaitResponse = true
         request.isWriteWithResponse = true
         request.mode = .write
@@ -112,10 +110,10 @@ class LedControlManager: NSObject {
     
     func changeMode(modeId id: Int, callback: @escaping (_ isSuccessful: Bool, _ response: GyverStateResponse?) -> Void) {
         
-        let commandId = "4"
-        let state = "\(id)"
+        let commandId:UInt8 = 0x04
+        let mode:UInt8 = UInt8(id)
         
-        let request = GyverRequest(request: "\(commandId),\(state)", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        let request = GyverRequest(rawData: Data([commandId, divider, mode]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
         request.isWaitResponse = true
         request.isWriteWithResponse = true
         request.mode = .write
@@ -135,10 +133,10 @@ class LedControlManager: NSObject {
     
     func changeLeds(state isOn: Bool, callback: @escaping (_ isSuccess: Bool) -> Void) {
         
-        let commandId = "5"
-        let state = isOn ? "1" : "0"
+        let commandId:UInt8 = 0x05
+        let state:UInt8 = isOn ? 0x01 : 0x00
         
-        let request = GyverRequest(request: "\(commandId),\(state)", requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        let request = GyverRequest(rawData: Data([commandId, divider, state]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
         request.isWaitResponse = false
         request.isWriteWithResponse = false
         request.mode = .write

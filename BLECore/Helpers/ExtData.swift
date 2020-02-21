@@ -14,4 +14,17 @@ extension Data {
         return map { String(format: "%02x", $0) }
             .joined(separator: "")
     }
+    
+    func uint16() -> UInt16 { // TODO: this only works for two byte data.
+        let array = Array(self)
+        let unicastUInt16 : UInt16 = UnsafePointer(array).withMemoryRebound(to: UInt16.self, capacity: 1) {
+            $0.pointee
+        }
+        return unicastUInt16
+    }
+
+    func uint8() -> UInt8 { // TODO: this only works for one byte
+        let array = Array(self)
+        return array[0]
+    }
 }

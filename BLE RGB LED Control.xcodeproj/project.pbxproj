@@ -31,11 +31,13 @@
 		054489D223F9B3B5009D8A67 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C623F9B3B5009D8A67 /* ExtString.swift */; };
 		054489D323F9B3B5009D8A67 /* ExtObjectOrNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */; };
 		054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489C823F9B3B5009D8A67 /* LogsHelper.swift */; };
+		054BCEDA23FEB9D70075A11C /* SliderSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BCED923FEB9D70075A11C /* SliderSetting.swift */; };
 		057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */; };
 		057701A423FAC6F900E3C0E7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */; };
 		058A28D023FC196F0092C0CB /* GyverStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A28CF23FC196F0092C0CB /* GyverStateResponse.swift */; };
 		058A28D223FC19910092C0CB /* GyverSetStateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A28D123FC19910092C0CB /* GyverSetStateRequest.swift */; };
 		05CCA72C23FC648A00AA3C7F /* GyverStateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CCA72B23FC648A00AA3C7F /* GyverStateCommand.swift */; };
+		05F4593C23FFF340000F7C97 /* LedModeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4593B23FFF340000F7C97 /* LedModeEnum.swift */; };
 		5B7923C5736DEC3EFFBF50A2 /* Pods_BLE_RGB_LED_Control.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55924D66CAB3DA21B8B91EC7 /* Pods_BLE_RGB_LED_Control.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,11 +68,13 @@
 		054489C623F9B3B5009D8A67 /* ExtString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		054489C723F9B3B5009D8A67 /* ExtObjectOrNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtObjectOrNil.swift; sourceTree = "<group>"; };
 		054489C823F9B3B5009D8A67 /* LogsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsHelper.swift; sourceTree = "<group>"; };
+		054BCED923FEB9D70075A11C /* SliderSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderSetting.swift; sourceTree = "<group>"; };
 		057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedControlViewController.swift; sourceTree = "<group>"; };
 		057701A323FAC6F900E3C0E7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 		058A28CF23FC196F0092C0CB /* GyverStateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverStateResponse.swift; sourceTree = "<group>"; };
 		058A28D123FC19910092C0CB /* GyverSetStateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverSetStateRequest.swift; sourceTree = "<group>"; };
 		05CCA72B23FC648A00AA3C7F /* GyverStateCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyverStateCommand.swift; sourceTree = "<group>"; };
+		05F4593B23FFF340000F7C97 /* LedModeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedModeEnum.swift; sourceTree = "<group>"; };
 		55924D66CAB3DA21B8B91EC7 /* Pods_BLE_RGB_LED_Control.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLE_RGB_LED_Control.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F4914BA8A09ED9A160F5E73 /* Pods-BLE RGB LED Control.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE RGB LED Control.release.xcconfig"; path = "Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control.release.xcconfig"; sourceTree = "<group>"; };
 		F5CAB1A50F6AE1AB3F2CCB53 /* Pods-BLE RGB LED Control.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE RGB LED Control.debug.xcconfig"; path = "Target Support Files/Pods-BLE RGB LED Control/Pods-BLE RGB LED Control.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				054489A923F9B208009D8A67 /* BLE */,
+				054BCED923FEB9D70075A11C /* SliderSetting.swift */,
+				05F4593B23FFF340000F7C97 /* LedModeEnum.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				054489CB23F9B3B5009D8A67 /* BLECommand.swift in Sources */,
 				054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */,
 				054489D123F9B3B5009D8A67 /* ExtData.swift in Sources */,
+				05F4593C23FFF340000F7C97 /* LedModeEnum.swift in Sources */,
 				054489CD23F9B3B5009D8A67 /* BLEDevicePeripheral.swift in Sources */,
 				057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */,
 				0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */,
@@ -355,6 +362,7 @@
 				05CCA72C23FC648A00AA3C7F /* GyverStateCommand.swift in Sources */,
 				054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */,
 				054489B723F9B218009D8A67 /* DevicePairViewController.swift in Sources */,
+				054BCEDA23FEB9D70075A11C /* SliderSetting.swift in Sources */,
 				054489CA23F9B3B5009D8A67 /* BLEError.swift in Sources */,
 				054489C923F9B3B5009D8A67 /* BLEPeripheral.swift in Sources */,
 			);
