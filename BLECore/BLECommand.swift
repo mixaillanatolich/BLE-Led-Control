@@ -16,9 +16,13 @@ public enum BLECommandStatus: String {
     case requestTimeout
 }
 
+protocol BLERequestInitializable {
+    init(with request: BLERequest)
+}
+
 typealias ResponseCallbackClosure = (BLECommandStatus, BLEResponse?, BLEError?) -> Void
 
-public class BLECommand: NSObject {
+public class BLECommand: NSObject, BLERequestInitializable {
     var request: BLERequest
     var response: BLEResponse?
     var rawResponse: Data = Data()
@@ -27,7 +31,7 @@ public class BLECommand: NSObject {
     
     var responseCallback: ResponseCallbackClosure?
     
-    init(with request: BLERequest) {
+    required init(with request: BLERequest) {
         self.request = request
     }
     

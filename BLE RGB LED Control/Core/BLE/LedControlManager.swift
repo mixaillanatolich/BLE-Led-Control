@@ -26,62 +26,35 @@ class LedControlManager: NSObject {
     
     func sendPing(callback: @escaping (_ isSuccess: Bool) -> Void) {
         
-        let request = GyverRequest(rawData: Data([0x00]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = true
-        request.isWriteWithResponse = true
-        request.mode = .write
-        request.retryCount = 0
-        
-        let command = BLECommand(with: request)
-        command.responseCallback = { (status, response, error) in
-            dLog("status: \(status)")
-            dLog("response: \(response?.dataAsString().orNil ?? "")")
-            dLog("error: \(error.orNil)")
-            callback(status == .success && response != nil)
+        makeCommandAndSend(data: Data([0x00]),
+                           isWaitResponse: true, isWriteWithResponse: true,
+                           command: GyverStateCommand.self) { (status, response) in
+                            
+                            callback(status && response != nil)
         }
-
-        BLEManager.currentDevice?.addCommandToQueue(command)
         
     }
     
     func loadSetting(callback: @escaping (_ isSuccessful: Bool, _ response: GyverStateResponse?) -> Void) {
         
-        let request = GyverRequest(rawData: Data([0x01]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = true
-        request.isWriteWithResponse = true
-        request.mode = .write
-        request.retryCount = 0
         
-        let command = GyverStateCommand(with: request)
-        command.responseCallback = { (status, response, error) in
-            dLog("status: \(status)")
-            dLog("response: \(response?.dataAsString().orNil ?? "")")
-            dLog(" ")
-            dLog("error: \(error.orNil)")
-            callback(status == .success , response as? GyverStateResponse)
+        makeCommandAndSend(data: Data([0x01]),
+                           isWaitResponse: true, isWriteWithResponse: true,
+                           command: GyverStateCommand.self) { (status, response) in
+                            
+                            callback(status, response as? GyverStateResponse)
         }
 
-        BLEManager.currentDevice?.addCommandToQueue(command)
-        
     }
     
     func changeSetting(command: Data, callback: @escaping (_ isSuccess: Bool) -> Void) {
         
-        let request = GyverRequest(rawData: command, requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = false
-        request.isWriteWithResponse = false
-        request.mode = .write
-        request.retryCount = 0
-        
-        let command = BLECommand(with: request)
-        command.responseCallback = { (status, response, error) in
-            dLog("status: \(status)")
-            dLog("response: \(response?.dataAsString().orNil ?? "")")
-            dLog("error: \(error.orNil)")
-            callback(status == .success)
+        makeCommandAndSend(data: command,
+                           isWaitResponse: false, isWriteWithResponse: false,
+                           command: BLECommand.self) { (status, response) in
+                            
+                            callback(status)
         }
-
-        BLEManager.currentDevice?.addCommandToQueue(command)
         
     }
     
@@ -90,21 +63,12 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x03
         let presetId:UInt8 = UInt8(id)
         
-        let request = GyverRequest(rawData: Data([commandId, divider, presetId]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = true
-        request.isWriteWithResponse = true
-        request.mode = .write
-        request.retryCount = 0
-        
-        let command = GyverStateCommand(with: request)
-        command.responseCallback = { (status, response, error) in
-            dLog("status: \(status)")
-            dLog("response: \(response?.dataAsString().orNil ?? "")")
-            dLog("error: \(error.orNil)")
-            callback(status == .success , response as? GyverStateResponse)
+        makeCommandAndSend(data: Data([commandId, divider, presetId]),
+                           isWaitResponse: true, isWriteWithResponse: true,
+                           command: GyverStateCommand.self) { (status, response) in
+                            
+                            callback(status, response as? GyverStateResponse)
         }
-
-        BLEManager.currentDevice?.addCommandToQueue(command)
         
     }
     
@@ -113,22 +77,12 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x04
         let mode:UInt8 = UInt8(id)
         
-        let request = GyverRequest(rawData: Data([commandId, divider, mode]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = true
-        request.isWriteWithResponse = true
-        request.mode = .write
-        request.retryCount = 0
-        
-        let command = GyverStateCommand(with: request)
-        command.responseCallback = { (status, response, error) in
-            dLog("status: \(status)")
-            dLog("response: \(response?.dataAsString().orNil ?? "")")
-            dLog("error: \(error.orNil)")
-            callback(status == .success , response as? GyverStateResponse)
+        makeCommandAndSend(data: Data([commandId, divider, mode]),
+                           isWaitResponse: true, isWriteWithResponse: true,
+                           command: GyverStateCommand.self) { (status, response) in
+                            
+                            callback(status, response as? GyverStateResponse)
         }
-
-        BLEManager.currentDevice?.addCommandToQueue(command)
-        
     }
     
     func changeLeds(state isOn: Bool, callback: @escaping (_ isSuccess: Bool) -> Void) {
@@ -136,22 +90,35 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x05
         let state:UInt8 = isOn ? 0x01 : 0x00
         
-        let request = GyverRequest(rawData: Data([commandId, divider, state]), requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
-        request.isWaitResponse = false
-        request.isWriteWithResponse = false
+        makeCommandAndSend(data: Data([commandId, divider, state]),
+                           isWaitResponse: false, isWriteWithResponse: false,
+                           command: BLECommand.self) { (status, response) in
+                            
+                            callback(status)
+        }
+    }
+    
+    func makeCommandAndSend<T: BLERequestInitializable>(data: Data, isWaitResponse: Bool,
+                                                        isWriteWithResponse: Bool, command: T.Type,
+                                                        callback: @escaping (_ isSuccessful: Bool, _ response: BLEResponse?) -> Void) {
+        
+        let request = GyverRequest(rawData: data, requestCharacteristic: "FFE1", responseCharacteristic: "FFE1")
+        request.isWaitResponse = isWaitResponse
+        request.isWriteWithResponse = isWriteWithResponse
         request.mode = .write
         request.retryCount = 0
         
-        let command = BLECommand(with: request)
+        let command = command.init(with: request) as! BLECommand
         command.responseCallback = { (status, response, error) in
             dLog("status: \(status)")
             dLog("response: \(response?.dataAsString().orNil ?? "")")
             dLog("error: \(error.orNil)")
-            callback(status == .success)
+            callback(status == .success, response)
         }
 
         BLEManager.currentDevice?.addCommandToQueue(command)
-        
     }
     
 }
+
+
