@@ -47,6 +47,11 @@ class LedControlViewController: BaseViewController {
     @IBOutlet weak var option3ValueLabel: UILabel!
     @IBOutlet weak var option3HeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var option4Label: UILabel!
+    @IBOutlet weak var option4Slider: UISlider!
+    @IBOutlet weak var option4ValueLabel: UILabel!
+    @IBOutlet weak var option4HeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var optionColorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var currentColorLabel: UILabel!
     
@@ -57,11 +62,9 @@ class LedControlViewController: BaseViewController {
     fileprivate var modesSettings = [[SliderSetting]]()
     fileprivate var currentModeSlidersStorage = [SliderSetting]()
     
-    //fileprivate let mode0 = [[ "name" : "Red", "min":0, "max":255, "b7":"1" ],[ "name" : "Green", "min":0, "max":255, "b7":"2" ],[ "name" : "Blue", "min":0, "max":255, "b7":"3"]]
-    
     fileprivate var isOn = false
     fileprivate var presetId = 0
-    fileprivate var modeId = 0
+    fileprivate var currentMode: LedMode = .RGB
     
     fileprivate var currentBrightness = 0
     fileprivate var currentWhite = 0
@@ -89,15 +92,10 @@ class LedControlViewController: BaseViewController {
     
     fileprivate func sendNewSettings(b7: Int) {
         var theB7 = b7
-        var mode: String? = nil
-        let theMode = modes[modeId]
-        if theMode == "HSV" {
-            mode = theMode
-        } else if theMode == "Color Selection" {
-            mode = theMode
+        if currentMode == .ColorSelection  {
             theB7 = currentColor
         }
-        let data = GyverSetStateRequest.buildRequest(brightness: currentBrightness, white: currentWhite, settings: currentModeSlidersStorage, b7: theB7, mode: mode)
+        let data = GyverSetStateRequest.buildRequest(brightness: currentBrightness, white: currentWhite, settings: currentModeSlidersStorage, b7: theB7, mode: currentMode)
         LEDController.changeSetting(command: data) { (result) in
         }
     }
@@ -133,13 +131,19 @@ class LedControlViewController: BaseViewController {
     }
     
     @IBAction func option1SliderChanged(_ slider: UISlider) {
-        let value = Int(slider.value)
+        var value = Int(slider.value)
+        if currentMode == .Kelvin {
+            value = value*100
+        }
         option1ValueLabel.text = "\(value)"
     }
     
     @IBAction func option1SliderTouchUp(_ slider: UISlider) {
         
-        let value = Int(slider.value)
+        var value = Int(slider.value)
+        if currentMode == .Kelvin {
+            value = value*100
+        }
         option1ValueLabel.text = "\(value)"
         
         let sliderSettings = currentModeSlidersStorage[0]
@@ -175,6 +179,22 @@ class LedControlViewController: BaseViewController {
         option3ValueLabel.text = "\(value)"
         
         let sliderSettings = currentModeSlidersStorage[2]
+        sliderSettings.value = value
+
+        sendNewSettings(b7: sliderSettings.b7)
+    }
+    
+    @IBAction func option4SliderChanged(_ slider: UISlider) {
+        let value = Int(slider.value)
+        option4ValueLabel.text = "\(value)"
+    }
+    
+    @IBAction func option4SliderTouchUp(_ slider: UISlider) {
+        
+        let value = Int(slider.value)
+        option4ValueLabel.text = "\(value)"
+        
+        let sliderSettings = currentModeSlidersStorage[3]
         sliderSettings.value = value
 
         sendNewSettings(b7: sliderSettings.b7)
@@ -238,14 +258,14 @@ class LedControlViewController: BaseViewController {
     @IBAction func modeButtonClicked(_ sender: Any) {
         ActionSheetStringPicker.show(withTitle: "Presets",
                                          rows: modes,
-                                         initialSelection: modeId,
+                                         initialSelection: currentMode.rawValue,
                                          doneBlock: { picker, index, value in
                                             print("picker = \(String(describing: picker))")
                                             print("value = \(String(describing: value))")
                                             print("index = \(String(describing: index))")
-                                            self.modeId = index
+                                            self.currentMode = LedMode(rawValue: index)!
                                             self.updateUI()
-                                            LEDController.changeMode(modeId: self.modeId) { (isSuccessful, response) in
+                                            LEDController.changeMode(modeId: self.currentMode.rawValue) { (isSuccessful, response) in
                                                 self.parseSettings(response: response)
                                             }
                                             return
@@ -346,6 +366,7 @@ extension LedControlViewController {
         option1HeightConstraint.constant = 0
         option2HeightConstraint.constant = 0
         option3HeightConstraint.constant = 0
+        option4HeightConstraint.constant = 0
         optionColorHeightConstraint.constant = 0
     }
     
@@ -355,7 +376,7 @@ extension LedControlViewController {
         
         onOffButton.isSelected = isOn
         presetLabel.text = presets[presetId]
-        modeLabel.text = modes[modeId]
+        modeLabel.text = modes[currentMode.rawValue]
         
         brightnessValueLabel.text = "\(currentBrightness)"
         brightnessSlider.value = Float(currentBrightness)
@@ -374,7 +395,11 @@ extension LedControlViewController {
                 option1Label.text = sliderSettings.name
                 option1Slider.minimumValue = Float(sliderSettings.min)
                 option1Slider.maximumValue = Float(sliderSettings.max)
-                option1Slider.value = Float(sliderSettings.value)
+                if currentMode == .Kelvin {
+                    option1Slider.value = Float(sliderSettings.value/100)
+                } else {
+                    option1Slider.value = Float(sliderSettings.value)
+                }
                 option1ValueLabel.text = "\(sliderSettings.value)"
             case 1:
                 option2HeightConstraint.constant = 48
@@ -390,6 +415,13 @@ extension LedControlViewController {
                 option3Slider.maximumValue = Float(sliderSettings.max)
                 option3Slider.value = Float(sliderSettings.value)
                 option3ValueLabel.text = "\(sliderSettings.value)"
+            case 3:
+                option4HeightConstraint.constant = 48
+                option4Label.text = sliderSettings.name
+                option4Slider.minimumValue = Float(sliderSettings.min)
+                option4Slider.maximumValue = Float(sliderSettings.max)
+                option4Slider.value = Float(sliderSettings.value)
+                option4ValueLabel.text = "\(sliderSettings.value)"
             default:
                 break
             }
@@ -430,14 +462,14 @@ extension LedControlViewController {
         //TODO: parse values
         
         DispatchQueue.main.async {
-            self.modeId = response.mode.rawValue
+            self.currentMode = response.mode
             self.presetId = response.preset
             self.isOn = response.isOn
             
             self.currentBrightness = response.brightness
             self.currentWhite = response.whiteLevel
             
-            self.currentModeSlidersStorage = self.modesSettings[self.modeId]
+            self.currentModeSlidersStorage = self.modesSettings[self.currentMode.rawValue]
             
             var index = 0
             for sliderSettings in self.currentModeSlidersStorage {
@@ -448,6 +480,8 @@ extension LedControlViewController {
                     sliderSettings.value = response.value2
                 case 2:
                     sliderSettings.value = response.value3
+                case 3:
+                    sliderSettings.value = response.value4
                 default:
                     break
                 }

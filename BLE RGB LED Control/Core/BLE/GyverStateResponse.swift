@@ -52,6 +52,9 @@ class GyverStateResponse: BLEResponse {
             whiteLevel = value4
         case .HSV:
             whiteLevel = value3
+            value3 = value2
+            value2 = value1
+            value1 = brightness
         case .Color:
             whiteLevel = value2
         case .ColorSelection:
@@ -66,7 +69,15 @@ class GyverStateResponse: BLEResponse {
             whiteLevel = brightness
         case .StrobeLight:
             whiteLevel = value4
+            value4 = value3
+            value3 = value2
+            value2 = value1
+            value1 = brightness
         case .RandomStrobeLight:
+            value4 = value3
+            value3 = value2
+            value2 = value1
+            value1 = brightness
             whiteLevel = value4
         case .Flashing:
             whiteLevel = value4 //undefined

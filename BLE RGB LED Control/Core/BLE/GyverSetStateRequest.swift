@@ -10,7 +10,7 @@ import UIKit
 
 class GyverSetStateRequest: GyverRequest {
     
-    class func buildRequest(brightness: Int, white: Int, settings:[SliderSetting], b7: Int, mode: String?) -> Data {
+    class func buildRequest(brightness: Int, white: Int, settings:[SliderSetting], b7: Int, mode: LedMode) -> Data {
         
         var b2 = 0
         var b3 = 0
@@ -21,40 +21,17 @@ class GyverSetStateRequest: GyverRequest {
         
         var tmpSettings = settings
         
-        if let mode = mode {
-            if mode == "HSV" {
-                
-                if b7 == 1 {
-                    if let setting = tmpSettings.first {
-                        theBrightness = setting.value
-                        tmpSettings.removeFirst()
-                    }
-                } else {
-                    tmpSettings.removeFirst()
-                }
-                
+        if mode == .HSV || mode == .StrobeLight || mode == .RandomStrobeLight {
+            
+            if b7 == 1 {
                 if let setting = tmpSettings.first {
-                    b2 = setting.value
+                    theBrightness = setting.value
                     tmpSettings.removeFirst()
                 }
-                
-                if let setting = tmpSettings.first {
-                    b3 = setting.value
-                    tmpSettings.removeFirst()
-                }
-                
-                if theB7 > 0 && theB7 != 10 {
-                    theB7 -= 1
-                }
-            } else if "Color Selection" == mode {
-                
-                b2 = b7
-                theB7 = 1
-                
+            } else {
+                tmpSettings.removeFirst()
             }
             
-            
-        } else {
             if let setting = tmpSettings.first {
                 b2 = setting.value
                 tmpSettings.removeFirst()
@@ -70,13 +47,30 @@ class GyverSetStateRequest: GyverRequest {
                 tmpSettings.removeFirst()
             }
             
+            if theB7 > 0 && theB7 != 10 {
+                theB7 -= 1
+            }
+        } else if mode == .ColorSelection {
+            b2 = b7
+            theB7 = 1
+        } else {
+            if let setting = tmpSettings.first {
+                b2 = setting.value
+                tmpSettings.removeFirst()
+            }
+            
+            if let setting = tmpSettings.first {
+                b3 = setting.value
+                tmpSettings.removeFirst()
+            }
+            
+            if let setting = tmpSettings.first {
+                b4 = setting.value
+                tmpSettings.removeFirst()
+            }
         }
         
-        
-
-        
         return buildRequest(brightness: theBrightness, b2: b2, b3: b3, b4: b4, b5: 0, white: white, b7: theB7)
-        
     }
     
     class func buildRequest(brightness: Int, b2: Int, b3: Int, b4: Int, b5: Int, white: Int, b7: Int) -> Data {
