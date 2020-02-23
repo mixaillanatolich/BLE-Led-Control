@@ -15,7 +15,6 @@
 		054489A123F9B057009D8A67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0544899F23F9B057009D8A67 /* LaunchScreen.storyboard */; };
 		054489AB23F9B208009D8A67 /* GyverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AA23F9B208009D8A67 /* GyverRequest.swift */; };
 		054489B523F9B218009D8A67 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489AF23F9B218009D8A67 /* BaseViewController.swift */; };
-		054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B023F9B218009D8A67 /* DeviceViewController.swift */; };
 		054489B723F9B218009D8A67 /* DevicePairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B123F9B218009D8A67 /* DevicePairViewController.swift */; };
 		054489B823F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */; };
 		054489B923F9B218009D8A67 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054489B323F9B218009D8A67 /* LaunchViewController.swift */; };
@@ -52,7 +51,6 @@
 		054489A223F9B057009D8A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054489AA23F9B208009D8A67 /* GyverRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyverRequest.swift; sourceTree = "<group>"; };
 		054489AF23F9B218009D8A67 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		054489B023F9B218009D8A67 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		054489B123F9B218009D8A67 /* DevicePairViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePairViewController.swift; sourceTree = "<group>"; };
 		054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		054489B323F9B218009D8A67 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				054489AF23F9B218009D8A67 /* BaseViewController.swift */,
 				054489B323F9B218009D8A67 /* LaunchViewController.swift */,
 				057701A123FAA7B200E3C0E7 /* LedControlViewController.swift */,
-				054489B023F9B218009D8A67 /* DeviceViewController.swift */,
 				054489B123F9B218009D8A67 /* DevicePairViewController.swift */,
 				054489B223F9B218009D8A67 /* DiscoveredDeviceTableViewCell.swift */,
 			);
@@ -348,7 +345,6 @@
 				054489CD23F9B3B5009D8A67 /* BLEDevicePeripheral.swift in Sources */,
 				057701A223FAA7B200E3C0E7 /* LedControlViewController.swift in Sources */,
 				0544899523F9B055009D8A67 /* AppDelegate.swift in Sources */,
-				054489B623F9B218009D8A67 /* DeviceViewController.swift in Sources */,
 				054489D023F9B3B5009D8A67 /* BLEResponseFactory.swift in Sources */,
 				054489D423F9B3B5009D8A67 /* LogsHelper.swift in Sources */,
 				054489CC23F9B3B5009D8A67 /* BLEResponse.swift in Sources */,

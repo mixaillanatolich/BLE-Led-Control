@@ -32,42 +32,27 @@ class GyverSetStateRequest: GyverRequest {
                 tmpSettings.removeFirst()
             }
             
-            if let setting = tmpSettings.first {
-                b2 = setting.value
-                tmpSettings.removeFirst()
-            }
-            
-            if let setting = tmpSettings.first {
-                b3 = setting.value
-                tmpSettings.removeFirst()
-            }
-            
-            if let setting = tmpSettings.first {
-                b4 = setting.value
-                tmpSettings.removeFirst()
-            }
-            
             if theB7 > 0 && theB7 != 10 {
                 theB7 -= 1
             }
         } else if mode == .ColorSelection {
             b2 = b7
             theB7 = 1
-        } else {
-            if let setting = tmpSettings.first {
-                b2 = setting.value
-                tmpSettings.removeFirst()
-            }
-            
-            if let setting = tmpSettings.first {
-                b3 = setting.value
-                tmpSettings.removeFirst()
-            }
-            
-            if let setting = tmpSettings.first {
-                b4 = setting.value
-                tmpSettings.removeFirst()
-            }
+        }
+        
+        if let setting = tmpSettings.first {
+            b2 = setting.value
+            tmpSettings.removeFirst()
+        }
+        
+        if let setting = tmpSettings.first {
+            b3 = setting.value
+            tmpSettings.removeFirst()
+        }
+        
+        if let setting = tmpSettings.first {
+            b4 = setting.value
+            tmpSettings.removeFirst()
         }
         
         return buildRequest(brightness: theBrightness, b2: b2, b3: b3, b4: b4, b5: 0, white: white, b7: theB7)

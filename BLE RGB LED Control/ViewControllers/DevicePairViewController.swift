@@ -29,29 +29,9 @@ class DevicePairViewController: BaseViewController {
         }
         
         BLEManager.setupConnectStatusCallback { (connectStatus, peripheral, devType, error) in
-            
             dLog("conn status: \(connectStatus)")
             dLog("error: \(error.orNil)")
-            
-            if connectStatus == .ready {
-                DispatchQueue.main.async {
-                    let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
-                    self.dismiss(animated: true) {
-                        self.deviceId = peripheral?.identifier.uuidString
-                        guard let vc = ledControlVc else {
-                            return
-                        }
-                        vc.pairControllerWillDismiss()
-                    }
-                }
-            } else if connectStatus == .error || connectStatus == .timeoutError {
-                DispatchQueue.main.async {
-                    self.startDiscovery()
-                    self.tableView.isUserInteractionEnabled = true
-                    self.waitingPairDevice = false
-                }
-            }
-            
+            self.handleConnectDeviceState(connectStatus, peripheral)
         }
     }
     
@@ -83,6 +63,23 @@ class DevicePairViewController: BaseViewController {
         stopDiscovery()
     }
     
+    @IBAction func closeButtonClicked(_ sender: Any) {
+        let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
+        self.dismiss(animated: true) {
+            guard let vc = ledControlVc else {
+                return
+            }
+            vc.pairControllerWillDismiss()
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
+extension DevicePairViewController {
+    
     fileprivate func startDiscovery() {
         if !BLEManager.isDiscovering() {
             discoveredDevices = [String: BLEPeripheral]()
@@ -94,6 +91,27 @@ class DevicePairViewController: BaseViewController {
     fileprivate func stopDiscovery() {
         if BLEManager.isDiscovering() {
             BLEManager.stopDiscovery()
+        }
+    }
+    
+    fileprivate func handleConnectDeviceState(_ connectStatus: BLEDeviceConnectStatus, _ peripheral: CBPeripheral?) {
+        if connectStatus == .ready {
+            DispatchQueue.main.async {
+                let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
+                self.dismiss(animated: true) {
+                    self.deviceId = peripheral?.identifier.uuidString
+                    guard let vc = ledControlVc else {
+                        return
+                    }
+                    vc.pairControllerWillDismiss()
+                }
+            }
+        } else if connectStatus == .error || connectStatus == .timeoutError {
+            DispatchQueue.main.async {
+                self.startDiscovery()
+                self.tableView.isUserInteractionEnabled = true
+                self.waitingPairDevice = false
+            }
         }
     }
     
@@ -111,20 +129,6 @@ class DevicePairViewController: BaseViewController {
                 cell.updateDeviceRSSI(rssi: blePeripheral.rssi)
             }
         }
-    }
-    
-    @IBAction func closeButtonClicked(_ sender: Any) {
-        let ledControlVc = self.presentationController?.delegate as? LedControlScreenDelegate
-        self.dismiss(animated: true) {
-            guard let vc = ledControlVc else {
-                return
-            }
-            vc.pairControllerWillDismiss()
-        }
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 }
 
@@ -144,7 +148,6 @@ extension DevicePairViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

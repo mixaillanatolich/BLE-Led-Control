@@ -25,7 +25,6 @@ class LedControlViewController: BaseViewController {
     @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var modeLabel: UILabel!
     
-    
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var brightnessValueLabel: UILabel!
     
@@ -88,16 +87,6 @@ class LedControlViewController: BaseViewController {
         updateUIOnDeviceStateChanged()
         screenDidShow()
         updateUI()
-    }
-    
-    fileprivate func sendNewSettings(b7: Int) {
-        var theB7 = b7
-        if currentMode == .ColorSelection  {
-            theB7 = currentColor
-        }
-        let data = GyverSetStateRequest.buildRequest(brightness: currentBrightness, white: currentWhite, settings: currentModeSlidersStorage, b7: theB7, mode: currentMode)
-        LEDController.changeSetting(command: data) { (result) in
-        }
     }
     
     @IBAction func brightnessSliderChanged(_ slider: UISlider) {
@@ -276,16 +265,15 @@ class LedControlViewController: BaseViewController {
                                          origin: sender)
     }
     
-        @IBAction func buttonClicked(_ sender: Any) {
+    @IBAction func buttonClicked(_ sender: Any) {
 //            LEDController.sendPing { (success) in
 //                dLog("send ping res: \(success)")
 //            }
             
-            LEDController.loadSetting(callback: { (result, response) in
-                self.parseSettings(response: response)
-            })
-            
-        }
+        LEDController.loadSetting(callback: { (result, response) in
+            self.parseSettings(response: response)
+        })
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -310,6 +298,16 @@ extension LedControlViewController: LedControlScreenDelegate {
 
 extension LedControlViewController {
     
+    fileprivate func sendNewSettings(b7: Int) {
+        var theB7 = b7
+        if currentMode == .ColorSelection  {
+            theB7 = currentColor
+        }
+        let data = GyverSetStateRequest.buildRequest(brightness: currentBrightness, white: currentWhite, settings: currentModeSlidersStorage, b7: theB7, mode: currentMode)
+        LEDController.changeSetting(command: data) { (result) in
+        }
+    }
+    
     fileprivate func screenDidShow() {
         
         BLEManager.setupConnectStatusCallback { (connectStatus, peripheral, devType, error) in
@@ -319,14 +317,12 @@ extension LedControlViewController {
             
             if connectStatus == .ready {
                 DispatchQueue.main.async {
-                    //self.pairButton.setTitleColor(UIColor.green, for: .normal)
                     self.controlLabel.textColor = UIColor.green
                     self.updateUIOnDeviceStateChanged()
                     self.loadSettings()
                 }
             } else if connectStatus == .error || connectStatus == .timeoutError || connectStatus == .disconected {
                 DispatchQueue.main.async {
-                    //self.pairButton.setTitleColor(UIColor.yellow, for: .normal)
                     self.controlLabel.textColor = UIColor.yellow
                     BLEManager.connectToDevice(peripheral!, deviceType: .expectedDevice,
                                                serviceIds: [CBUUID(string: "FFE0")],
@@ -337,11 +333,9 @@ extension LedControlViewController {
             
         }
           
-        //pairButton.setTitleColor(UIColor.white, for: .normal)
         self.controlLabel.textColor = UIColor.white
         
         guard !BLEManager.deviceConnected() else {
-            //pairButton.setTitleColor(UIColor.green, for: .normal)
             self.controlLabel.textColor = UIColor.green
             self.loadSettings()
             return
@@ -355,7 +349,6 @@ extension LedControlViewController {
             return
         }
         
-        //pairButton.setTitleColor(UIColor.yellow, for: .normal)
         self.controlLabel.textColor = UIColor.yellow
         BLEManager.connectToDevice(peripheral, deviceType: .expectedDevice,
                                    serviceIds: [CBUUID(string: "FFE0")],
@@ -383,8 +376,6 @@ extension LedControlViewController {
         
         whiteValueLabel.text = "\(currentWhite)"
         whiteSlider.value = Float(currentWhite)
-        
-        //currentModeSlidersStorage = modesSettings[modeId]
         
         hideSliders()
         var index = 0
@@ -458,8 +449,6 @@ extension LedControlViewController {
         guard let response = response else {
             return
         }
-        
-        //TODO: parse values
         
         DispatchQueue.main.async {
             self.currentMode = response.mode
