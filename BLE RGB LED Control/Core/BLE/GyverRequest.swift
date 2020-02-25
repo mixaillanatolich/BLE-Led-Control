@@ -25,12 +25,9 @@ class GyverRequest: BLERequest {
     override func rawData() -> [Data] {
         var requestData = Data()
         requestData.append("$".hexData())
+        requestData.append(Data([UInt8(data.count)]))
         requestData.append(data)
-        requestData.append(";".hexData())
         return [requestData]
     }
-    
-    
-    
     
 }

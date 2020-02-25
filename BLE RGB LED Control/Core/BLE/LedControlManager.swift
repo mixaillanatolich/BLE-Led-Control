@@ -13,7 +13,7 @@ let LEDController = LedControlManager.sharedInstance
 
 class LedControlManager: NSObject {
 
-    fileprivate let divider: UInt8 = 0x2c
+  //  fileprivate let divider: UInt8 = 0x2c
     
     public static let sharedInstance: LedControlManager = {
         let instance = LedControlManager()
@@ -63,7 +63,7 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x03
         let presetId:UInt8 = UInt8(id)
         
-        makeCommandAndSend(data: Data([commandId, divider, presetId]),
+        makeCommandAndSend(data: Data([commandId, presetId]),
                            isWaitResponse: true, isWriteWithResponse: true,
                            command: GyverStateCommand.self) { (status, response) in
                             
@@ -77,7 +77,7 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x04
         let mode:UInt8 = UInt8(id)
         
-        makeCommandAndSend(data: Data([commandId, divider, mode]),
+        makeCommandAndSend(data: Data([commandId, mode]),
                            isWaitResponse: true, isWriteWithResponse: true,
                            command: GyverStateCommand.self) { (status, response) in
                             
@@ -90,7 +90,7 @@ class LedControlManager: NSObject {
         let commandId:UInt8 = 0x05
         let state:UInt8 = isOn ? 0x01 : 0x00
         
-        makeCommandAndSend(data: Data([commandId, divider, state]),
+        makeCommandAndSend(data: Data([commandId, state]),
                            isWaitResponse: false, isWriteWithResponse: false,
                            command: BLECommand.self) { (status, response) in
                             

@@ -12,8 +12,13 @@ boolean getStarted;
 byte index;
 String string_convert = "";
 
-byte byte_convert[15];
+
+uint32_t parseTimer;
+uint16_t parseWaitPeriod = 2*1000; // wait 2 sec
+
+byte byte_convert[255];
 byte byte_index = 0;
+byte expected_bytes = 0;
 
 void sendSettings() {
   request = "";
@@ -140,8 +145,26 @@ void bluetoothTick() {
 }
 
 void parsing() {
+
+#if (BLE_VERSION == 1)
+    if (getStarted) {
+      // the check for make sure we are not freazing in the case wrong message
+      if ((millis() - parseTimer >= parseWaitPeriod) && getStarted) {
+          parseTimer = millis();
+          getStarted = false;
+          index = 0;
+          expected_bytes = 0;
+          byte_index = 0;
+          Serial.println("Reset parse msg by timeout");
+      }
+    }
+#else
+#endif
+  
   if (btSerial.available() > 0) {
     char incomingByte = btSerial.read();      // обязательно ЧИТАЕМ входящий символ
+
+    parseTimer = millis();
 
     /*
     Serial.print("b: ");
@@ -149,6 +172,69 @@ void parsing() {
     Serial.print(" - ");
     Serial.println(incomingByte);
     */
+
+#if (BLE_VERSION == 1)
+    if (getStarted) {
+      if (expected_bytes == 0) {
+        expected_bytes = incomingByte;
+        Serial.print("expected_bytes: ");
+        Serial.println(expected_bytes);
+      } else {
+        byte_convert[byte_index] = incomingByte;
+        byte_index++;
+      }
+
+      Serial.print("byte_index: ");
+      Serial.println(byte_index);
+
+      if (expected_bytes == byte_index) {
+        
+        if (byte_index == 1) {
+          intData[0] = byte_convert[0];
+          index = 1;
+        } else if (byte_index == 2) {
+          intData[0] = byte_convert[0];
+          intData[1] = byte_convert[1];
+          index =2;
+        }
+
+        if (byte_index == 12) {
+          intData[0] = byte_convert[0];
+          intData[1] = byte_convert[1];
+          intData[2] = 0;
+          intData[2] |= ((int)byte_convert[2]) << 8;
+          intData[2] |= ((int)byte_convert[3]);
+          intData[3] = 0;
+          intData[3] |= ((int)byte_convert[4]) << 8;
+          intData[3] |= ((int)byte_convert[5]);
+          intData[4] = 0;
+          intData[4] |= ((int)byte_convert[6]) << 8;
+          intData[4] |= ((int)byte_convert[7]);
+          intData[5] = 0;
+          intData[5] |= ((int)byte_convert[8]) << 8;
+          intData[5] |= ((int)byte_convert[9]);
+          
+          intData[6] = byte_convert[10];
+          intData[7] = byte_convert[11];
+          index = 7;
+        }
+
+        getStarted = false;
+        recievedFlag = true;    
+        
+      }
+       
+    } else {
+      if (incomingByte == header) {
+          getStarted = true;
+          index = 0;
+          expected_bytes = 0;
+          byte_index = 0;
+      }
+    }
+
+#else
+    
     
     if (getStarted) {                         // если приняли начальный символ (парсинг разрешён)
       if (incomingByte != divider && incomingByte != ending) {   // если это не пробел И не конец
@@ -204,6 +290,9 @@ void parsing() {
       getStarted = false;                     // сброс
       recievedFlag = true;                    // флаг на принятие
     }
+
+#endif
+    
   }
 }
 #else
