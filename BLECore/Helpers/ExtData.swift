@@ -15,15 +15,16 @@ extension Data {
             .joined(separator: "")
     }
     
-    func uint16() -> UInt16 { // TODO: this only works for two byte data.
-        let array = Array(self)
-        let unicastUInt16 : UInt16 = UnsafePointer(array).withMemoryRebound(to: UInt16.self, capacity: 1) {
-            $0.pointee
-        }
-        return unicastUInt16
+    func uint16() -> UInt16 {
+        //        let array = Array(self)
+        //        let unicastUInt16 : UInt16 = UnsafePointer(array).withMemoryRebound(to: UInt16.self, capacity: 1) {
+        //            $0.pointee
+        //        }
+        //        return unicastUInt16
+                return withUnsafeBytes { $0.bindMemory(to: UInt16.self) }[0]
     }
 
-    func uint8() -> UInt8 { // TODO: this only works for one byte
+    func uint8() -> UInt8 {
         let array = Array(self)
         return array[0]
     }
